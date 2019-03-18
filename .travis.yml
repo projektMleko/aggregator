@@ -1,0 +1,13 @@
+language: java
+install: true
+
+before_install:
+ - chmod +x gradlew
+
+jdk:
+  - oraclejdk8
+
+script:
+  - ./gradlew assemble
+  - ./gradlew test
+  - ./gradlew sonarqube -Dsonar.projectKey=projektMleko_aggregator -Dsonar.organization=projektmleko-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_API_KEY
