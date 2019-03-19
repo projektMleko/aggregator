@@ -12,6 +12,8 @@
         <encoder>
             <pattern>[%thread] %d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
         </encoder>
+<!--nananananrkotyki-->
+
     </appender>
 
     <root level="info" name="rollingFileLogger">
