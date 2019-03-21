@@ -6,11 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.metrics.MetricsEndpoint;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import pl.milk.aggregator.AggregatorApplication;
-
-import javax.annotation.PostConstruct;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 @Component
 public class ActuatorMetricLogger {
@@ -35,6 +30,4 @@ public class ActuatorMetricLogger {
         stringBuilder.append("]; ");
         return stringBuilder.toString();
     }
-
-
 }
