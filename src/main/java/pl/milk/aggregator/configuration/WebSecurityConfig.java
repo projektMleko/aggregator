@@ -13,6 +13,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/h2/**").authenticated()
+                .antMatchers("/actuator/**").authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login");
