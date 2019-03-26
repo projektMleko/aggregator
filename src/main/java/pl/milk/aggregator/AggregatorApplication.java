@@ -13,8 +13,8 @@ import pl.milk.aggregator.log.ActuatorMetricLogger;
 @SpringBootApplication
 @EnableScheduling
 @PropertySources({
-		@PropertySource("/application.properties"),
-		@PropertySource("/dbconfig.properties")
+		@PropertySource("/application.properties")
+//		@PropertySource("/dbconfig.properties")
 })
 public class AggregatorApplication {
 	private static final Logger logger = LoggerFactory.getLogger(AggregatorApplication.class);
