@@ -1,1 +1,1 @@
-gradlew.bat clean build bootjar
+start cmd /k gradlew.bat clean build bootjar
