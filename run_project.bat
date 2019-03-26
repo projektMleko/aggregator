@@ -1,0 +1,1 @@
+start cmd /k call java -jar build\libs\aggregator-0.0.1-SNAPSHOT.jar
