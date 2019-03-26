@@ -14,7 +14,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/h2/**").authenticated()
                 .and()
-                .formLogin();
+                .formLogin()
+                .loginPage("/login");
 
         http.csrf().disable();
         http.headers().frameOptions().disable();
