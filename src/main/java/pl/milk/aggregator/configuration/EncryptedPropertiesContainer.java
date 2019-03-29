@@ -9,10 +9,10 @@ import javax.annotation.PostConstruct;
 
 public class EncryptedPropertiesContainer {
 
-    @Value("${encrypted.property}")
-    String encryptedProperty;
+    @Value("${accuweather.api.key}")
+    String accuweatherApiKey;
 
-    public String getEncryptedProperty() {
-        return encryptedProperty;
+    public String getAccuweatherApiKey() {
+        return accuweatherApiKey;
     }
 }
