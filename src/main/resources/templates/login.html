@@ -19,30 +19,33 @@
             <a href="login.html">Panel logowania</a>
           </div>
         </div>
+        <a href="https://github.com/projektMleko/aggregator">
+            <img id="gitHub" src="img/GitHub_Logo.png" alt="GitHub_image" >
+        </a>
     </header>
 
 
     <article class="credentialField">
         <form name="f" th:action="@{/login}" method="post">
             <fieldset>
-                <legend align="center">Panel logowania</legend>
+                <legend id="loginBoxHeader">Wprowadź dane logowania</legend>
+                <div id="panelLogowania">
+                    <input type="text" id="username" name="username" placeholder="Login" class="loginFields"/>
+                    <br>
+                    <br>
+                    <input type="password" id="password" name="password" placeholder="Hasło"class="loginFields"/>
+                    <br>
+                    <div class="form-actions">
+                        <button id="loginButton" type="submit" class="btn">Zaloguj się</button>
+                    </div>
 
-                <input type="text" id="username" name="username" placeholder="Login" />
-                <br>
-                <br>
-                <input type="password" id="password" name="password" placeholder="Hasło"/>
-                <br>
-                <div class="form-actions">
-                    <button type="submit" class="btn">Zaloguj się</button>
+                    <div th:if="${param.error}" class="alert alert-error">
+                        Błędna nazwa użytkownika lub hasło.
+                    </div>
+                    <div th:if="${param.logout}" class="alert alert-success">
+                        Zostałeś wylogowany.
+                    </div>
                 </div>
-
-                <div th:if="${param.error}" class="alert alert-error">
-                    Invalid username and password.
-                </div>
-                <div th:if="${param.logout}" class="alert alert-success">
-                    You have been logged out.
-                </div>
-
             </fieldset>
         </form>
 </article>

@@ -131,6 +131,15 @@ img.dropbtn{
     filter: invert(100%);
     margin-top: -35px;
 }
+img#gitHub{
+    width: auto;
+    height: 50px; 
+    margin: -35px 0px 0px 20px;
+    filter: invert(100%);
+}
+img#gitHub:hover{
+    cursor: pointer;
+}
 
 .dropdown {
   position: relative;
@@ -161,6 +170,7 @@ img.dropbtn{
 
 /*KONIEC DROPDOWN MENU */
 
+/* POCZĄTEK PANELU LOGOWANIA */
 .credentialField{
         width: 40%;
         height: 40%;
@@ -174,6 +184,64 @@ img.dropbtn{
         border-radius: 20px;
 
 }
+
+#panelLogowania{
+    width: 300px;
+    height: 150px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+.loginFields{
+    marign: auto;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    padding: 2px 0px 2px 0px;
+    margin-top: 10px;
+}
+#loginBoxHeader{
+    padding: 5px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+}
+#loginButton{
+    width: 100px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: none;
+    border: none;
+    margin: 20px auto;
+    display: block;
+    box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+
+}
+#loginButton:hover{
+    background-color: rgba(190,115,190,1);
+    cursor: pointer;
+    box-shadow: none;
+    border: none;
+    color: white;
+    transition: 0.35s;
+}  
+#loginButton:active{
+    background-color: rgba(190,115,190,1);
+    cursor: pointer;
+    border:none;
+    box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+    color: white;
+}   
+
+/* KONIEC PANELU LOGOWANIA */
+
+
+
+
 
 /* ==========================================================================
    Helper classes
