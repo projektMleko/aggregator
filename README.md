@@ -4,6 +4,7 @@ Simple fun project made to aggregate some kind of data from different sites and 
 ## Navigation
 - [Git (pl)](docs/git.md)
 - [Persistance (pl)](docs/persistance.md)
+- [Password encryption (pl)](docs/passwordEncryption.md)
 
 ## How to run
 1. Add `dbconfig.properties` in resources directory. 
