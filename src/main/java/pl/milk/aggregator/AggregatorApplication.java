@@ -1,21 +1,20 @@
 package pl.milk.aggregator;
 
+import com.ulisesbocchio.jasyptspringboot.annotation.EncryptablePropertySource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import pl.milk.aggregator.log.ActuatorMetricLogger;
 
 @SpringBootApplication
 @EnableScheduling
 @PropertySources({
 		@PropertySource("/application.properties")
-//		@PropertySource("/dbconfig.properties")
 })
+@EncryptablePropertySource("encrypted.properties")
 public class AggregatorApplication {
 	private static final Logger logger = LoggerFactory.getLogger(AggregatorApplication.class);
 
@@ -23,7 +22,5 @@ public class AggregatorApplication {
 		SpringApplication.run(AggregatorApplication.class, args);
 		logger.info("APPLICATION STARTED");
 		System.out.println("APPLICATION STARTED");
-
 	}
-
 }
