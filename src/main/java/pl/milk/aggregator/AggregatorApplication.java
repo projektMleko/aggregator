@@ -8,19 +8,22 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import pl.milk.aggregator.log.HeapInfoLogger;
+
 
 @SpringBootApplication
 @EnableScheduling
 @PropertySources({
-		@PropertySource("/application.properties")
+        @PropertySource("/application.properties")
 })
 @EncryptablePropertySource("encrypted.properties")
 public class AggregatorApplication {
-	private static final Logger logger = LoggerFactory.getLogger(AggregatorApplication.class);
+    private static final Logger logger = LoggerFactory.getLogger(AggregatorApplication.class);
 
-	public static void main(String[] args) {
-		SpringApplication.run(AggregatorApplication.class, args);
-		logger.info("APPLICATION STARTED");
-		System.out.println("APPLICATION STARTED");
-	}
+    public static void main(final String[] args) {
+        SpringApplication.run(AggregatorApplication.class, args);
+        logger.info("APPLICATION STARTED");
+        System.out.println("APPLICATION STARTED");
+        HeapInfoLogger.logHeapInfo();
+    }
 }
