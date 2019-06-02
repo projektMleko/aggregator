@@ -15,7 +15,7 @@
     </appender>
 
     <root level="info" name="rollingFileLogger">
-        <appender-ref ref="fileAppender" />
+        <appender-ref ref="fileAppender"/>
     </root>
 
     <!--reguest response-->
@@ -35,7 +35,7 @@
     </appender>
 
     <logger level="debug" name="ReqRspLogger" additivity="false">
-        <appender-ref ref="reqRspfileAppender" />
+        <appender-ref ref="reqRspfileAppender"/>
     </logger>
 
     <!--metrics-->
@@ -55,7 +55,46 @@
     </appender>
 
     <logger level="debug" name="MetricsLogger" additivity="false">
-        <appender-ref ref="metricsfileAppender" />
+        <appender-ref ref="metricsfileAppender"/>
     </logger>
 
+    <!--file data provider-->
+
+    <appender name="PerfLoggerAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/perf_log_%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>100MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>[%thread] %d{HH:mm:ss.SSS} %-5level - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger level="debug" name="PerfLogger" additivity="false">
+        <appender-ref ref="PerfLoggerAppender"/>
+    </logger>
+
+    <!--warn-->
+
+    <appender name="WarnLoggerAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/warn_%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>100MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>[%thread] %d{HH:mm:ss.SSS} %-5level - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger level="debug" name="WarnLogger" additivity="false">
+        <appender-ref ref="WarnLoggerAppender"/>
+    </logger>
 </configuration>
