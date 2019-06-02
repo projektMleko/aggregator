@@ -7,8 +7,6 @@ import java.util.List;
 @Entity
 public class Movie {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "movie_Sequence")
-    @SequenceGenerator(name = "movie_Sequence", sequenceName = "MOVIE_SEQ")
     private Long id;
     @Column(unique = true)
     private String title;
@@ -45,4 +43,12 @@ public class Movie {
         genres.add(genre);
     }
 
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", genres=" + genres +
+                '}';
+    }
 }
