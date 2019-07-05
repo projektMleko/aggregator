@@ -1,5 +1,6 @@
 package pl.milk.aggregator.controller;
 
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/file_processing")
+@Api(tags = {"File processing"})
+@SwaggerDefinition(tags = {
+        @Tag(name = "File processing", description = "API used to import files into Database. Mostly used in development stage or before first production run.")})
 public class FileProcessingController {
 
     @Autowired
@@ -22,24 +26,24 @@ public class FileProcessingController {
     @Autowired
     private FileProcessingService<Movie> movieFileProcessingService;
 
-    @RequestMapping(method = RequestMethod.OPTIONS, produces = "application/json")
-    public ResponseEntity<List<String>> getPossibleEndpoints() {
-        final List endpoints = new ArrayList();
-        endpoints.add("OPTIONS: /");
-        endpoints.add("POST: /ratings");
-        endpoints.add("POST: /movies");
-        return new ResponseEntity<>(endpoints, HttpStatus.OK);
-    }
 
+    @ApiOperation(value = "Endpoint used to import rating file.")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "File path was successfully recognized and file was found."),
+            @ApiResponse(code = 404, message = "File from given file path was not found.")})
     @PostMapping(path = "/ratings", consumes = "text/plain", produces = "application/json")
-    public ResponseEntity<String> processRatings(@RequestBody final String filePath) {
+    public ResponseEntity<String> processRatings(@ApiParam(value = "Example value: C:/file/ratings.csv", required = true) @RequestBody final String filePath) {
         validateFilePath(filePath);
         ratingFileProcessingService.processFile(filePath);
         return new ResponseEntity<>("File exists, passed to processing service. Wish me luck.", HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Endpoint used to import movie file.")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "File path was successfully recognized and file was found."),
+            @ApiResponse(code = 404, message = "File from given file path was not found.")})
     @PostMapping(path = "/movies", consumes = "text/plain", produces = "application/json")
-    public ResponseEntity<String> processMovies(@RequestBody final String filePath) {
+    public ResponseEntity<String> processMovies(@ApiParam(value = "Example value: C:/file/movies.csv", required = true)  @RequestBody final String filePath) {
         validateFilePath(filePath);
         movieFileProcessingService.processFile(filePath);
         return new ResponseEntity<>("File exists, passed to processing service. Wish me luck.", HttpStatus.OK);
