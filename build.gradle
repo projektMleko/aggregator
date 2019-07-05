@@ -24,6 +24,8 @@ dependencies {
 
     compile group: 'com.typesafe.akka', name: 'akka-stream_2.12', version: '2.5.22'
     compile group: 'com.github.ulisesbocchio', name: 'jasypt-spring-boot-starter', version: '2.1.1'
+    // Use MySQL Connector-J
+    compile 'mysql:mysql-connector-java'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
