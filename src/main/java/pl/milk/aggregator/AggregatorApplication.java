@@ -13,9 +13,6 @@ import pl.milk.aggregator.log.HeapInfoLogger;
 
 @SpringBootApplication
 @EnableScheduling
-@PropertySources({
-        @PropertySource("/application.properties")
-})
 @EncryptablePropertySource("encrypted.properties")
 public class AggregatorApplication {
     private static final Logger logger = LoggerFactory.getLogger(AggregatorApplication.class);
