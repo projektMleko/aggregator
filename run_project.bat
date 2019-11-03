@@ -1,1 +1,1 @@
-start cmd /k call java -jar build\libs\aggregator-0.0.1-SNAPSHOT.jar
+start cmd /k call java -Dspring.profiles.active=dev -jar build\libs\aggregator-0.0.1-SNAPSHOT.jar
