@@ -16,6 +16,6 @@ spring.datasource.password=XXXXX
 ```
 3. Sync gradle
 4. Run project
-5. Enter http://localhost:8080
+5. Enter http://localhost:15001 (for dev profile)
 
 
