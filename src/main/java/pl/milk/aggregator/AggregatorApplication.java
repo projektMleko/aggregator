@@ -11,7 +11,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import pl.milk.aggregator.log.HeapInfoLogger;
 
-
 @SpringBootApplication
 @EnableScheduling
 @EncryptablePropertySource("encrypted.properties")
