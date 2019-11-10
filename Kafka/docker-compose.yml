@@ -1,0 +1,37 @@
+version: '3.2'
+
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+  kafka-1:
+    image: wurstmeister/kafka:2.12-2.3.0
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_HOST_NAME: kafka-1
+      KAFKA_ADVERTISED_PORT: 9092
+      KAFKA_CREATE_TOPICS: "Movies:1:2,Ratings:2:1:compact"
+    ports:
+      - "9092"
+  kafka-2:
+    image: wurstmeister/kafka:2.12-2.3.0
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_HOST_NAME: kafka-2
+      KAFKA_ADVERTISED_PORT: 9092
+      KAFKA_CREATE_TOPICS: "Movies:1:2,Ratings:2:1:compact"
+    ports:
+      - "9092"
+  zoo-navigator:
+    image: elkozmon/zoonavigator:latest
+    depends_on:
+      - zookeeper
+    ports:
+      - "9000:9000"
+    environment:
+      AUTO_CONNECT_CONNECTION_STRING: zookeeper:2181
