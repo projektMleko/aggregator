@@ -1,6 +1,4 @@
-pluginManagement {
-	repositories {
-		gradlePluginPortal()
-	}
-}
-rootProject.name = 'aggregator'
+rootProject.name = 'Aggregator'
+include 'File-Processor'
+include 'Kafka'
+

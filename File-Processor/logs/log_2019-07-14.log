@@ -1,0 +1,75 @@
+[Test worker] 13:48:08.828 INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [pl.milk.aggregator.AggregatorApplicationTests], using SpringBootContextLoader
+[Test worker] 13:48:08.833 INFO  o.s.t.c.s.AbstractContextLoader - Could not detect default resource locations for test class [pl.milk.aggregator.AggregatorApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+[Test worker] 13:48:08.834 INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [pl.milk.aggregator.AggregatorApplicationTests]: AggregatorApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[Test worker] 13:48:08.994 INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration pl.milk.aggregator.AggregatorApplication for test class pl.milk.aggregator.AggregatorApplicationTests
+[Test worker] 13:48:09.114 INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+[Test worker] 13:48:09.139 INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@68be2b9b, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@2a5ad8c5, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@7173b7b1, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@57ef67b, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1c05e7bc, org.springframework.test.context.transaction.TransactionalTestExecutionListener@60659809, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@cc7658b, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@7ef88746, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@4d73a722, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@19adb55, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@36460dd0, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@cbe7ee9, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@5c2482eb, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@bb3aa49]
+[main] 13:52:22.462 INFO  p.m.aggregator.AggregatorApplication - Starting AggregatorApplication on artur-ThinkPad-T450 with PID 13784 (/home/artur/IdeaProjects/aggregator/out/production/classes started by artur in /home/artur/IdeaProjects/aggregator)
+[main] 13:52:22.476 INFO  p.m.aggregator.AggregatorApplication - The following profiles are active: dev
+[main] 13:52:24.892 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+[main] 13:52:25.030 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 126ms. Found 5 repository interfaces.
+[main] 13:52:25.842 INFO  c.u.j.c.EncryptablePropertySourceBeanFactoryPostProcessor - Created Encryptable Property Source 'EncryptedPropertySource#1563105145835' from locations: [encrypted.properties]
+[main] 13:52:25.843 INFO  c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+[main] 13:52:25.891 INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource configurationProperties [org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource] to AOP Proxy
+[main] 13:52:25.891 INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletConfigInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+[main] 13:52:25.891 INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+[main] 13:52:25.891 INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+[main] 13:52:25.892 INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableMapPropertySourceWrapper
+[main] 13:52:25.892 INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+[main] 13:52:25.892 INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource applicationConfig: [classpath:/application-dev.properties] [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+[main] 13:52:25.976 INFO  c.u.j.f.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+[main] 13:52:26.066 INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$fe863ca] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[main] 13:52:26.220 INFO  c.u.j.r.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+[main] 13:52:26.222 INFO  c.u.j.d.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+[main] 13:52:26.836 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 15001 (http)
+[main] 13:52:26.866 INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-15001"]
+[main] 13:52:26.887 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+[main] 13:52:26.888 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.16]
+[main] 13:52:26.904 INFO  o.a.c.core.AprLifecycleListener - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib]
+[main] 13:52:27.086 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[main] 13:52:27.086 INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 4463 ms
+[main] 13:52:28.009 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+[main] 13:52:28.249 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+[main] 13:52:28.342 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+[main] 13:52:28.448 INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.3.7.Final}
+[main] 13:52:28.450 INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+[main] 13:52:28.668 INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+[main] 13:52:28.848 INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+[main] 13:52:30.034 INFO  o.h.t.s.internal.SchemaCreatorImpl - HHH000476: Executing import script 'ScriptSourceInputFromUrl(file:/home/artur/IdeaProjects/aggregator/out/production/resources/import.sql)'
+[main] 13:52:30.043 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[main] 13:52:30.583 INFO  o.h.h.i.QueryTranslatorFactoryInitiator - HHH000397: Using ASTQueryTranslatorFactory
+[main] 13:52:32.629 INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 16 endpoint(s) beneath base path '/actuator'
+[main] 13:52:32.750 INFO  c.u.j.encryptor.DefaultLazyEncryptor - String Encryptor custom Bean not found with name 'jasyptStringEncryptor'. Initializing Default String Encryptor
+[main] 13:52:32.767 INFO  c.u.j.encryptor.DefaultLazyEncryptor - Encryptor config not found for property jasypt.encryptor.algorithm, using default value: PBEWithMD5AndDES
+[main] 13:52:32.768 INFO  c.u.j.encryptor.DefaultLazyEncryptor - Encryptor config not found for property jasypt.encryptor.keyObtentionIterations, using default value: 1000
+[main] 13:52:32.768 INFO  c.u.j.encryptor.DefaultLazyEncryptor - Encryptor config not found for property jasypt.encryptor.poolSize, using default value: 1
+[main] 13:52:32.768 INFO  c.u.j.encryptor.DefaultLazyEncryptor - Encryptor config not found for property jasypt.encryptor.providerName, using default value: null
+[main] 13:52:32.768 INFO  c.u.j.encryptor.DefaultLazyEncryptor - Encryptor config not found for property jasypt.encryptor.providerClassName, using default value: null
+[main] 13:52:32.768 INFO  c.u.j.encryptor.DefaultLazyEncryptor - Encryptor config not found for property jasypt.encryptor.saltGeneratorClassname, using default value: org.jasypt.salt.RandomSaltGenerator
+[main] 13:52:32.769 INFO  c.u.j.encryptor.DefaultLazyEncryptor - Encryptor config not found for property jasypt.encryptor.ivGeneratorClassname, using default value: org.jasypt.salt.NoOpIVGenerator
+[main] 13:52:32.770 INFO  c.u.j.encryptor.DefaultLazyEncryptor - Encryptor config not found for property jasypt.encryptor.stringOutputType, using default value: base64
+[main] 13:52:32.947 INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+[main] 13:52:33.232 INFO  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 25f3f65a-c300-4a50-9661-83ea5beb9540
+
+[main] 13:52:33.391 INFO  o.s.s.web.DefaultSecurityFilterChain - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3c2956a6, org.springframework.security.web.context.SecurityContextPersistenceFilter@13f6395d, org.springframework.security.web.header.HeaderWriterFilter@1f81b020, org.springframework.security.web.authentication.logout.LogoutFilter@2b3cbc2c, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@69e636cc, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@3554de46, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@154ea177, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@18e0f894, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7172525e, org.springframework.security.web.session.SessionManagementFilter@65dff28b, org.springframework.security.web.access.ExceptionTranslationFilter@fb79241, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4cb37177]
+[main] 13:52:33.468 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[main] 13:52:33.853 INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+[main] 13:52:34.001 INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+[main] 13:52:34.034 INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+[main] 13:52:34.088 INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+[main] 13:52:34.279 INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-15001"]
+[main] 13:52:34.342 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 15001 (http) with context path ''
+[main] 13:52:34.345 INFO  p.m.aggregator.AggregatorApplication - Started AggregatorApplication in 13.049 seconds (JVM running for 14.858)
+[main] 13:52:34.375 INFO  p.m.aggregator.AggregatorApplication - APPLICATION STARTED
+[main] 13:52:34.378 INFO  p.m.aggregator.AggregatorApplication - heap-size: 208.0 MB
+[main] 13:52:34.379 INFO  p.m.aggregator.AggregatorApplication - heap-max-size: 1.9 GB
+[main] 13:52:34.379 INFO  p.m.aggregator.AggregatorApplication - heap-free-size: 152.8 MB
+[Thread-5] 14:11:09.144 INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'taskScheduler'
+[Thread-5] 14:11:09.160 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[Thread-5] 14:11:09.162 INFO  o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+[Thread-5] 14:11:09.256 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[Thread-5] 14:11:09.272 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
