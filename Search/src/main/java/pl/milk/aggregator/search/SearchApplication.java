@@ -15,6 +15,6 @@ public class SearchApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		HazelcastInstance hzInstance = Hazelcast.newHazelcastInstance();
+
 	}
 }
