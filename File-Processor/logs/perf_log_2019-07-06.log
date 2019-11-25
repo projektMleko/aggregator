@@ -1,5 +1,0 @@
-[ForkJoinPool.commonPool-worker-7] 11:30:38.500 INFO  - Action finished: File Processing, time: 26562.416435ms
-[ForkJoinPool.commonPool-worker-1] 11:36:02.976 INFO  - Action finished: File Processing, time: 36430.660062ms
-[ForkJoinPool.commonPool-worker-5] 11:48:08.998 INFO  - Action finished: File Processing, time: 533909.874747ms
-[ForkJoinPool.commonPool-worker-5] 11:56:03.521 INFO  - Action finished: File Processing, time: 14159.430484ms
-git
