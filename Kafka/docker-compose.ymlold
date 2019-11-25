@@ -1,0 +1,62 @@
+version: '3.2'
+
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+  kafka-1:
+    image: wurstmeister/kafka:2.12-2.3.0
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENERS: PLAINTEXT://:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://0.0.1.11:9092
+
+  kafka-2:
+    image: wurstmeister/kafka:2.12-2.3.0
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENERS: PLAINTEXT://:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://0.0.1.12:9092
+
+  kafka-3:
+    image: wurstmeister/kafka:2.12-2.3.0
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENERS: PLAINTEXT://:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://0.0.1.13:9092
+      KAFKA_CREATE_TOPICS: "Movies:2:2,Ratings:2:2:compact"
+  kafka-manager:
+    image: sheepkiller/kafka-manager:latest
+    ports:
+      - "9000:9000"
+    depends_on:
+      - zookeeper
+      - kafka-1
+      - kafka-2
+      - kafka-3
+    environment:
+      ZK_HOSTS: zookeeper:2181
+      APPLICATION_SECRET: letmein
+      KM_ARGS: -Djava.net.preferIPv4Stack=true
+
+#do testów;
+ #     bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic Movies --from-beginning
+ # bin/kafka-console-producer.sh --broker-list localhost:9092 --topic Movies
+
+
+#JAK URUCHAMIAMY NA NOWO:
+ # docker stop ...
+  #docker rm ...
