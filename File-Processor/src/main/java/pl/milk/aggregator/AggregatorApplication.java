@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import pl.milk.aggregator.kafka.Producer;
@@ -32,9 +33,5 @@ public class AggregatorApplication implements CommandLineRunner {
         logger.info("Running in profile: " + env.getActiveProfiles()[0]);
         System.out.println("Running in profile: " + env.getActiveProfiles()[0]);
         HeapInfoLogger.logHeapInfo();
-        System.out.println("KAFKA PRODUCER TEST START");
-        Producer kafkaProducer = new Producer();
-        kafkaProducer.run();
-        System.out.println("KAFKA PRODUCER TEST END");
     }
 }

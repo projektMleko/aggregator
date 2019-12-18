@@ -3,6 +3,7 @@ HELP.md
 /build/
 !gradle/wrapper/gradle-wrapper.jar
 /logs/
+/file-processor/build/
 
 ### STS ###
 .apt_generated
@@ -19,6 +20,7 @@ HELP.md
 *.iml
 *.ipr
 /out/
+/file-processor/out/
 
 ### NetBeans ###
 /nbproject/private/
