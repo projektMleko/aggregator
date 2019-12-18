@@ -23,15 +23,18 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
     compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
-
-// https://mvnrepository.com/artifact/org.apache.kafka/kafka
+    
     compile group: 'org.apache.kafka', name: 'kafka_2.12', version: '2.3.1'
-
-
+    
     compile group: 'com.typesafe.akka', name: 'akka-stream_2.12', version: '2.5.22'
     compile group: 'com.github.ulisesbocchio', name: 'jasypt-spring-boot-starter', version: '2.1.1'
     // Use MySQL Connector-J
     compile 'mysql:mysql-connector-java'
+    
+    compile group: 'io.vavr', name: 'vavr', version: '0.10.0'
+
+    compile 'io.projectreactor:reactor-tools:3.3.1.RELEASE'
+
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'

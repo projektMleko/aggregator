@@ -1,21 +1,29 @@
 package pl.milk.aggregator.configuration;
 
 import akka.actor.ActorSystem;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import pl.milk.aggregator.kafka.AggregatorKafkaProducer;
+import pl.milk.aggregator.kafka.MovieProducer;
+import pl.milk.aggregator.kafka.Producer;
+import pl.milk.aggregator.kafka.RatingProducer;
 import pl.milk.aggregator.persistance.model.Movie;
 import pl.milk.aggregator.persistance.model.Rating;
 import pl.milk.aggregator.persistance.repository.MovieRepository;
 import pl.milk.aggregator.persistance.repository.RatingRepository;
 import pl.milk.aggregator.processor.MovieProcessor;
 import pl.milk.aggregator.processor.RatingProcessor;
-import pl.milk.aggregator.service.BatchInsertSerivce;
-import pl.milk.aggregator.service.BatchInsertSerivceImpl;
-import pl.milk.aggregator.service.FileProcessingService;
-import pl.milk.aggregator.service.FileProcessingServiceImpl;
+import pl.milk.aggregator.service.*;
 
 @Configuration
 public class BeanFactory {
+
+    @Bean
+    public ObjectMapper getObjectToJSONMapper() {
+        return new ObjectMapper();
+    }
 
     @Bean
     public ActorSystem getFileProcessingActorSystem() {
@@ -34,10 +42,10 @@ public class BeanFactory {
     }
 
     @Bean
-    public FileProcessingService<Rating> getFileRatingProcessingService(final ActorSystem actorSystem,
-                                                                        final RatingProcessor movieProcessor,
-                                                                        final BatchInsertSerivce<Rating> batchInsertSerivce) {
-        return new FileProcessingServiceImpl<>(actorSystem, movieProcessor, batchInsertSerivce);
+    public FileProcessingService<Rating> getFileRatingProcessingService(
+            final RatingProcessor movieProcessor,
+            final KafkaSenderService<Rating> kafkaSenderService) {
+        return new FileProcessingServiceImpl<>(movieProcessor, kafkaSenderService);
     }
 
 
@@ -47,9 +55,19 @@ public class BeanFactory {
     }
 
     @Bean
-    public FileProcessingService<Movie> getFileMovieProcessingService(final ActorSystem actorSystem,
+    public FileProcessingService<Movie> getFileMovieProcessingService(
                                                                       final MovieProcessor movieProcessor,
-                                                                      final BatchInsertSerivce<Movie> batchInsertSerivce) {
-        return new FileProcessingServiceImpl<>(actorSystem, movieProcessor, batchInsertSerivce);
+                                                                      final KafkaSenderService<Movie> kafkaSenderService) {
+        return new FileProcessingServiceImpl<>(movieProcessor, kafkaSenderService);
+    }
+
+    @Bean
+    public KafkaSenderService<Movie> getMovieKafkaSenderSerivce(ObjectMapper objectMapper, MovieProducer movieProducer) {
+        return new KafkaSenderService<>(objectMapper, movieProducer);
+    }
+
+    @Bean
+    public KafkaSenderService<Rating> getRatingKafkaSenderSerivce(ObjectMapper objectMapper, RatingProducer ratingProducer) {
+        return new KafkaSenderService<>(objectMapper, ratingProducer);
     }
 }
