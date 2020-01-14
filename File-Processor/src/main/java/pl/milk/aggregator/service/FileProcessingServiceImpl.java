@@ -11,8 +11,7 @@ import akka.stream.javadsl.FramingTruncation;
 import akka.stream.javadsl.Sink;
 import akka.util.ByteString;
 import org.springframework.beans.factory.annotation.Value;
-import pl.milk.aggregator.log.performance.PerformanceAction;
-import pl.milk.aggregator.log.performance.PerformanceFactory;
+
 import pl.milk.aggregator.processor.FileDataProcessor;
 import pl.milk.aggregator.utlis.ByteStringDecoder;
 import reactor.core.publisher.Flux;
@@ -21,9 +20,7 @@ import javax.annotation.PostConstruct;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.Duration;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionStage;
+
 import java.util.stream.BaseStream;
 
 

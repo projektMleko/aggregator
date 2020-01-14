@@ -14,7 +14,7 @@
         </encoder>
     </appender>
 
-    <root level="info" name="rollingFileLogger">
+    <root level="info">
         <appender-ref ref="fileAppender"/>
     </root>
 

@@ -73,7 +73,7 @@ services:
       - zoo1
 
   kafka-manager:
-    image: sheepkiller/kafka-manager:latest
+    image: sheepkiller/kafka-manager:stable
     ports:
       - "9000:9000"
     links:

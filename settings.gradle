@@ -1,4 +1,6 @@
 rootProject.name = 'Aggregator'
 include 'File-Processor'
+include 'Data-Manager'
 include 'Kafka'
+include 'Core'
 

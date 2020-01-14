@@ -35,6 +35,8 @@ dependencies {
 
     compile 'io.projectreactor:reactor-tools:3.3.1.RELEASE'
 
+    compile project(":Core")
+
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
