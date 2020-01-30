@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="pl.milk.aggregator.AggregatorApplicationTests" tests="1" skipped="1" failures="0" errors="0" timestamp="2020-01-04T21:51:37" hostname="artur-ThinkPad-T450" time="0.0">
+<testsuite name="pl.milk.aggregator.AggregatorApplicationTests" tests="1" skipped="1" failures="0" errors="0" timestamp="2020-01-29T19:11:42" hostname="artur-ThinkPad-T450" time="0.0">
   <properties/>
   <testcase name="contextLoads" classname="pl.milk.aggregator.AggregatorApplicationTests" time="0.0">
     <skipped/>

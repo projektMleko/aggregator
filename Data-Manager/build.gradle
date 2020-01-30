@@ -17,7 +17,6 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	implementation 'com.h2database:h2'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
@@ -25,6 +24,12 @@ dependencies {
 	//Kafka streams
 	compile group: 'org.apache.kafka', name: 'kafka-streams', version: '2.4.0'
 	compile group: 'org.apache.kafka', name: 'kafka-clients', version: '2.4.0'
+	// Use MySQL Connector-J
+	compile 'mysql:mysql-connector-java'
+	//Explicit adding logback
+	compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+
+
 
 
 

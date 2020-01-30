@@ -9,21 +9,23 @@ import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
-import org.apache.kafka.streams.errors.LogAndContinueExceptionHandler;
 import org.apache.kafka.streams.errors.StreamsException;
 import org.apache.kafka.streams.kstream.*;
-import pl.milk.DataManager.persistance.Rating;
-import pl.milk.DataManager.persistance.RatingTimestampWrapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import pl.milk.DataManager.persistance.model.AverageRating;
+import pl.milk.DataManager.persistance.model.Rating;
+import pl.milk.DataManager.persistance.repository.RatingRepository;
 import pl.milk.DataManager.serdes.JsonPOJODeserializer;
 import pl.milk.DataManager.serdes.JsonPOJOSerializer;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
-
+@Component
 public class AverageRatingStream {
     private static final String TOPIC = "Ratings";
+    @Autowired
+    private RatingRepository ratingRepository;
 
     public void runStream() {
         System.out.println("START RUN STREAM");
@@ -38,42 +40,6 @@ public class AverageRatingStream {
         Serde<Rating> ratingSerde = getRatingSerde();
 
         final StreamsBuilder builder = new StreamsBuilder();
-
-        //todo dodac by przy kazdym ratingu generowal komentarz. Najlepiej by byl to osobny kafkaStream, ktory to zrobi
-//        builder.stream(TOPIC, Consumed.with(Serdes.String(), ratingSerde))
-//                .groupBy((k, v) -> v.getFkMovieId(), Grouped.with(Serdes.Long(), ratingSerde))
-//                .reduce((aggregator, v) -> {
-//                    aggregator.setValue(aggregator.getValue().add(v.getValue()));
-//                    Optional.ofNullable(aggregator.getId()).ifPresentOrElse(
-//                            o -> aggregator.setId(o + 1L),
-//                            () -> aggregator.setId(1L));
-//                    return aggregator; })
-//                .toStream(Named.as("Rating_aggregate"))
-//                .mapValues(this::avgValue)
-//                .to("Ratings_AVG", Produced.with(Serdes.Long(), ratingSerde));
-                //.foreach((k, v) -> System.out.println("Event from Rating: " + v));
-
-        //todo najlepsze na te chwile
-//        builder.stream(TOPIC, Consumed.with(Serdes.String(), ratingSerde))
-//                .selectKey((k, v) -> v.getFkMovieId())  //to powoduje repartioning (str. 113)
-//                .groupBy((k, v) -> v.getFkMovieId(), Grouped.with(Serdes.Long(), ratingSerde))
-//                .aggregate(() -> new Rating(),
-//                            (k, v, agg) -> {
-//                                agg.setId(agg.getId()+1L);
-//                                agg.setFkMovieId(k);
-//                                agg.setValue(agg.getValue().add(v.getValue()));
-//                                return agg; },
-//                            Materialized.with(Serdes.Long(), ratingSerde))
-//
-//                // stateful operation, czyli zawiera acumulator
-//                .mapValues(this::avgValue, Materialized.with(Serdes.Long(), ratingSerde))
-//                .toStream()
-//                .to("Ratings_AVG", Produced.with(Serdes.Long(), ratingSerde));
-
-        //todo zrrobic by ta topologia:
-        // a) zracala avg_rating to topicu
-        // b) zapisywala sie do bazy w tradycyjny sposob
-        // b) 1) do tego dodac obraz bazy oraclowej :P
         builder.stream(TOPIC, Consumed.with(Serdes.String(), ratingSerde))
                 .selectKey((k, v) -> v.getFkMovieId())
                 .groupByKey(Grouped.with(Serdes.Long(), ratingSerde))
@@ -86,7 +52,14 @@ public class AverageRatingStream {
                             return agg; },
                         Materialized.with(Serdes.Long(), ratingSerde))
                 .toStream()
-                .print(Printed.toSysOut());
+                .mapValues(r -> new AverageRating()
+                        .setValue(r.getValue().divide(BigDecimal.valueOf(r.getId())))
+                        .setFkMovieId(r.getFkMovieId()))
+                .to("RATING_AVG", Produced.with(Serdes.Long(), getAvgRatingSerde()));
+        //FIXME db rating entity doesnt work because of some reasons
+        //todo remember, do not use stream 2 times on same topic (Ratings) with same builder. It will throw an exception about registering same topic twice.
+//      builder.stream(TOPIC, Consumed.with(Serdes.String(), ratingSerde))
+//                .foreach((k, r) -> ratingRepository.save(r));
 
         final Topology topology = builder.build();
         System.out.println("Topology desc: " + topology.describe());
@@ -99,16 +72,10 @@ public class AverageRatingStream {
         } catch (StreamsException e) {
             e.printStackTrace();
         } finally {
-           // streams.close();
-         //   System.out.println("END RUN STREAM");
         }
     }
 
-    private Rating avgValue(Rating v) {
-        //System.out.println("Mapuje: " + v);
-        v.setValue(v.getValue().divide(BigDecimal.valueOf(v.getId())));
-        return v;
-    }
+
 
     private Serde<Rating> getRatingSerde() {
         Map<String, Object> serdeProps = new HashMap<>();
@@ -119,6 +86,20 @@ public class AverageRatingStream {
 
         final Deserializer<Rating> ratingJsonPOJODeserializer = new JsonPOJODeserializer<>();
         serdeProps.put("JsonPOJOClass", Rating.class);
+        ratingJsonPOJODeserializer.configure(serdeProps, false);
+
+        return Serdes.serdeFrom(ratingJsonPOJOSerializer, ratingJsonPOJODeserializer);
+    }
+
+    private Serde<AverageRating> getAvgRatingSerde() {
+        Map<String, Object> serdeProps = new HashMap<>();
+        final Serializer<AverageRating> ratingJsonPOJOSerializer;
+        ratingJsonPOJOSerializer = new JsonPOJOSerializer<>();
+        serdeProps.put("JsonPOJOClass", AverageRating.class);
+        ratingJsonPOJOSerializer.configure(serdeProps, false);
+
+        final Deserializer<AverageRating> ratingJsonPOJODeserializer = new JsonPOJODeserializer<>();
+        serdeProps.put("JsonPOJOClass", AverageRating.class);
         ratingJsonPOJODeserializer.configure(serdeProps, false);
 
         return Serdes.serdeFrom(ratingJsonPOJOSerializer, ratingJsonPOJODeserializer);
